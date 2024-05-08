@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Address Book</h1>
+<div id="contactForm">
+    <input type="text" id="nameInput" placeholder="Enter name">
+    <input type="tel" id="phoneNumberInput" placeholder="Enter phone number">
+    <button onclick="addContact()">Add Contact</button>
+</div>
+<div id="contactsList"></div>
+
+<!-- Update Contact Modal -->
+<div id="updateModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeUpdateModal()">&times;</span>
+        <h2>Update Contact</h2>
+        <input type="hidden" id="updateIdInput">
+        <input type="text" id="updateNameInput" placeholder="Enter name">
+        <input type="tel" id="updatePhoneNumberInput" placeholder="Enter phone number">
+        <button onclick="updateContact()" class="blue-button">Update Contact</button>
+    </div>
+</div>
+
+<footer>Made with <span class="heart">&#9829;</span> by Anil Raj Rimal.</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
