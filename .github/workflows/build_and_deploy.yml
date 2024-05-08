@@ -1,0 +1,36 @@
+name: Deploy Contact-List App
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy on VM
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SSH into VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 13.234.118.198
+          username: ubuntu
+          key: ${{ secrets.ANIL_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/Projects/ContactList-Web
+            
+            # Pull latest changes from the repository
+            if ! git pull origin master; then
+              echo "Failed to pull latest changes from the repository."
+              exit 1
+            fi
+            
+            # Restart Docker containers
+            docker compose down
+            docker compose up -d
+            
+            echo "Deployment successful."
