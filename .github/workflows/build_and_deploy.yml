@@ -17,7 +17,8 @@ jobs:
       - name: SSH into VM
         uses: appleboy/ssh-action@v1.0.3
         with:
-          
+          host: 13.234.118.198
+          username: ubuntu
           key: ${{ secrets.ANIL_SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/Projects/ContactList-Web
