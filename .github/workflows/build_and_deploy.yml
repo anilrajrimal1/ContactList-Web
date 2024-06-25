@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: SSH into VM
+      - name: SSH into VM & run project
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.234.118.198
@@ -34,3 +34,11 @@ jobs:
             docker compose up -d
             
             echo "Deployment successful."
+            
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,took,pullRequest
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
