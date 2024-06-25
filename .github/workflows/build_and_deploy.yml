@@ -17,7 +17,7 @@ jobs:
       - name: SSH into VM & run project
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 13.234.118.198
+          host: 
           username: ubuntu
           key: ${{ secrets.ANIL_SSH_PRIVATE_KEY }}
           script: |
